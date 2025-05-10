@@ -409,3 +409,14 @@
     text-decoration: underline;
   }
   
+  .site-footer {
+    text-align: center;
+    padding: 1.2em 0 1em 0;
+    font-size: 1em;
+    color: var(--accent);
+    background: none;
+    letter-spacing: 0.01em;
+    border-top: 1px solid #3a2911;
+    margin-top: 3em;
+  }
+  
