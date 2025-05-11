@@ -286,6 +286,7 @@
   
   @media (max-width: 600px) {
     .milonga-row {
+      display: flex;
       flex-direction: column;
       align-items: stretch;
       text-align: center;
@@ -431,6 +432,7 @@
     padding: 0;
     margin: 1em 0 2em 0;
     text-align: center;
+    color: var(--accent);
   }
   .dj-list li {
     margin: 0.25em 0;
