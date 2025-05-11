@@ -92,6 +92,26 @@
     text-align: center;
     margin-bottom: 2em;
   }
+
+  .home-divider-text {
+    position: relative;
+    text-align: center;
+    margin: 2em auto 1em auto;
+    /* font-size: 1.2em; */
+    /* color: var(--accent); */
+    max-width: 500px;
+  }
+  
+  .home-divider-text::before {
+    content: "";
+    display: block;
+    width: 60px; /* adjust line length as needed */
+    height: 2px;
+    background: var(--accent);
+    margin: 0 auto 1em auto;
+    border-radius: 2px;
+  }
+  
   
   /* DJ Page Styles */
   .dj-row {
@@ -264,40 +284,6 @@
     margin-right: auto;
   }
   
-/* --- MOBILE STYLES --- */
-@media (max-width: 600px) {
-  .milonga-row {
-    flex-direction: column;
-    align-items: flex-start;
-    font-size: 1.15em; /* slightly larger font for mobile */
-    padding: 1em 0.7em;
-  }
-  .milonga-time,
-  .milonga-dj,
-  .milonga-venue {
-    margin: 0.15em 0;
-    width: 100%;
-    position: relative;
-  }
-  /* On mobile, use horizontal lines instead */
-  .milonga-time::after,
-  .milonga-dj::after {
-    content: "";
-    display: block;
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: -0.3em;
-    height: 1px;
-    width: 100%;
-    background: var(--accent);
-    opacity: 0.5;
-  }
-  .milonga-venue::after {
-    display: none;
-  }
-  }
-  
   /* Logistics Styles */
   .logistics-section {
     max-width: 850px;
@@ -404,6 +390,7 @@
     padding: 0;
     margin: 1em 0 2em 0;
     text-align: center;
+    color: var(--accent);
   }
   .dj-list li {
     margin: 0.25em 0;
