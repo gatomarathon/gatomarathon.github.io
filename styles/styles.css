@@ -284,51 +284,42 @@
     margin-right: auto;
   }
   
-/* --- MOBILE STYLES --- */
-@media (max-width: 600px) {
-  .milonga-row {
-    flex-direction: column;
-    align-items: flex-start;
-    font-size: 1.05em;
-    padding: 0.5em 0.6em;      /* Less padding */
-    margin: 0.5em 0;           /* Less margin between rows */
-    box-shadow: none;          /* Optional: remove shadow for flatter look */
-    border-radius: 0.5em;
+  @media (max-width: 600px) {
+    .milonga-row {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      font-size: 1em;
+      padding: 0.3em 0.1em;    /* Even tighter padding */
+      margin: 0.3em 0;         /* Even less margin between rows */
+      border-radius: 0.5em;
+      box-shadow: none;
+      border-width: 1px;
+      border-bottom: 1px solid rgba(235, 228, 187, 0.18);
+      border-left: none;
+      border-right: none;
+      border-top: none;
+    }
+    .milonga-time,
+    .milonga-dj,
+    .milonga-venue {
+      width: 100%;
+      margin: 0.05em 0;        /* Minimal margin between fields */
+      padding: 0;
+      text-align: center;
+    }
+    /* Remove these to eliminate awkward horizontal lines */
+    /* 
+    .milonga-time::after,
+    .milonga-dj::after {
+      display: none;
+    }
+    .milonga-venue::after {
+      display: none;
+    }
+    */
   }
-  .milonga-time,
-  .milonga-dj,
-  .milonga-venue {
-    width: 100%;
-    margin: 0.1em 0;           /* Less margin between fields */
-    text-align: left;
-    border-bottom: none;       /* Remove any horizontal separator */
-    padding-bottom: 0;         /* Remove extra space */
-    position: static;
-  }
-  .milonga-row {
-    border-bottom: 1px solid rgba(235, 228, 187, 0.18);
-    border-left: none;
-    border-right: none;
-    border-top: none;
-  }
-  /* On mobile, use horizontal lines instead */
-  .milonga-time::after,
-  .milonga-dj::after {
-    content: "";
-    display: block;
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: -0.3em;
-    height: 1px;
-    width: 100%;
-    background: var(--accent);
-    opacity: 0.5;
-  }
-  .milonga-venue::after {
-    display: none;
-  }
-  }
+  
   
   /* Logistics Styles */
   .logistics-section {
