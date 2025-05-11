@@ -52,7 +52,7 @@
   nav a.active,
   nav a:hover {
     color: var(--text);
-    border-bottom: 2px solid var(--accent);
+    /* border-bottom: 2px solid var(--accent); */
   }
   
   /* Title Font for Main Titles */
@@ -194,6 +194,7 @@
   }
   
   .milonga-row {
+    /* existing styles... */
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -212,6 +213,24 @@
   .milonga-venue {
     flex: 1 1 150px;
     margin: 0.2em 0.5em;
+    position: relative;
+  }
+
+  .milonga-time::after,
+  .milonga-dj::after {
+    content: "";
+    position: absolute;
+    top: 15%;
+    right: -0.2em;
+    height: 70%;
+    width: 1px;
+    background: var(--accent);
+    opacity: 0.5;
+  }
+
+  /* Don't add line after the last field */
+  .milonga-venue::after {
+    display: none;
   }
   
   .venue-tbd {
@@ -245,19 +264,38 @@
     margin-right: auto;
   }
   
-  @media (max-width: 600px) {
-    .milonga-row {
-      flex-direction: column;
-      align-items: flex-start;
-      font-size: 1em;
-      padding: 0.7em;
-    }
-    .milonga-time,
-    .milonga-dj,
-    .milonga-venue {
-      margin: 0.15em 0;
-      width: 100%;
-    }
+/* --- MOBILE STYLES --- */
+@media (max-width: 600px) {
+  .milonga-row {
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 1.15em; /* slightly larger font for mobile */
+    padding: 1em 0.7em;
+  }
+  .milonga-time,
+  .milonga-dj,
+  .milonga-venue {
+    margin: 0.15em 0;
+    width: 100%;
+    position: relative;
+  }
+  /* On mobile, use horizontal lines instead */
+  .milonga-time::after,
+  .milonga-dj::after {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -0.3em;
+    height: 1px;
+    width: 100%;
+    background: var(--accent);
+    opacity: 0.5;
+  }
+  .milonga-venue::after {
+    display: none;
+  }
   }
   
   /* Logistics Styles */
@@ -369,7 +407,7 @@
   }
   .dj-list li {
     margin: 0.25em 0;
-    font-size: 1.1em;
+    font-size: 1.0em;
     letter-spacing: 0.01em;
   }
   
