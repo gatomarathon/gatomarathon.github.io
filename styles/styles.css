@@ -312,6 +312,7 @@
       text-align: center;
       position: static;        /* Ensure no pseudo-elements are positioned */
       display:block;
+      border: 1px solid red;
     }
     /* Remove any lines between fields */
     .milonga-time::after,
