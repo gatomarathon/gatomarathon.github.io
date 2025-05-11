@@ -290,8 +290,9 @@
       align-items: center;
       text-align: center;
       font-size: 1em;
-      padding: 0.2em 0.1em;    /* Minimal padding */
+      padding: 0;
       margin: 0.2em 0;         /* Minimal margin between rows */
+      gap: 0;
       border-radius: 0.5em;
       box-shadow: none;
       border-width: 1px;
@@ -308,6 +309,7 @@
       padding: 0;              /* No extra padding */
       text-align: center;
       position: static;        /* Ensure no pseudo-elements are positioned */
+      display:block;
     }
     /* Remove any lines between fields */
     .milonga-time::after,
