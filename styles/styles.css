@@ -284,48 +284,6 @@
     margin-right: auto;
   }
   
-  @media (max-width: 600px) {
-    .milonga-row {
-      display: flex;
-      flex-direction: column;
-      align-items: stretch;
-      text-align: center;
-      font-size: 1em;
-      padding: 0;
-      width: 100%;
-      max-width: 100%;
-      margin: 0.2em 0;         /* Minimal margin between rows */
-      gap: 0;
-      border-radius: 0.5em;
-      box-shadow: none;
-      border-width: 1px;
-      border-bottom: 1px solid rgba(235, 228, 187, 0.18);
-      border-left: none;
-      border-right: none;
-      border-top: none;
-    }
-    .milonga-time,
-    .milonga-dj,
-    .milonga-venue {
-      width: 100%;
-      margin: 0.03em 0;        /* Very tight margin between fields */
-      padding: 0;              /* No extra padding */
-      text-align: center;
-      position: static;        /* Ensure no pseudo-elements are positioned */
-      display:block;
-      border: 1px solid red;
-    }
-    /* Remove any lines between fields */
-    .milonga-time::after,
-    .milonga-dj::after,
-    .milonga-venue::after {
-      display: none !important;
-      content: none !important;
-    }
-  }
-  
-  
-  
   /* Logistics Styles */
   .logistics-section {
     max-width: 850px;
