@@ -254,9 +254,9 @@
   }
   
   .venue-tbd {
-    color: #e6ba55;
-    font-style: italic;
-    font-weight: bold;
+    color: #ebe4bb;
+    /* font-style: italic; */
+    /* font-weight: bold; */
   }
   
   .schedule-date {
