@@ -415,11 +415,15 @@
     transition: background 0.2s, color 0.2s, box-shadow 0.2s;
     cursor: pointer;
   }
+  .register-btn:visited {
+    color: var(--background);
+  }
   .register-btn:hover,
   .register-btn:focus {
     background-color: #e6ba55;
     color: #231404;
     box-shadow: 0 4px 16px rgba(20, 83, 45, 0.25);
+    text-decoration: none;
   }
   
   /* General link styles */
