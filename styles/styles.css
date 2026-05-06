@@ -229,15 +229,13 @@
   }
   
   .milonga-time,
-  .milonga-dj,
-  .milonga-venue {
+  .milonga-dj {
     flex: 1 1 150px;
     margin: 0.2em 0.5em;
     position: relative;
   }
 
-  .milonga-time::after,
-  .milonga-dj::after {
+  .milonga-time::after {
     content: "";
     position: absolute;
     top: 15%;
@@ -248,9 +246,17 @@
     opacity: 0.5;
   }
 
-  /* Don't add line after the last field */
-  .milonga-venue::after {
-    display: none;
+  .schedule-venue-main {
+    text-align: center;
+    font-size: 1.05em;
+    font-weight: bold;
+    color: var(--accent);
+    background: rgba(235, 228, 187, 0.08);
+    border: 1px solid rgba(235, 228, 187, 0.3);
+    border-radius: 0.5em;
+    padding: 0.6em 1.2em;
+    margin: -0.5em auto 1.8em;
+    display: inline-block;
   }
   
   .venue-tbd {
