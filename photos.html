@@ -207,28 +207,7 @@
       <p class="subtitle">Click any photo to view full size &nbsp;·&nbsp; ← → to navigate &nbsp;·&nbsp; Esc to close</p>
 
       <div class="gallery" id="gallery">
-        <!-- Replace src values with your Cloudinary URLs when ready         -->
-        <!-- e.g. https://res.cloudinary.com/YOUR_CLOUD/image/upload/f_auto,q_auto/photo1.jpg -->
-        <div class="gallery-item"><img src="https://picsum.photos/seed/g1/600/900"  alt="Photo 1"><div class="hover-overlay"><span>&#x26F6;</span></div></div>
-        <div class="gallery-item"><img src="https://picsum.photos/seed/g2/600/400"  alt="Photo 2"><div class="hover-overlay"><span>&#x26F6;</span></div></div>
-        <div class="gallery-item"><img src="https://picsum.photos/seed/g3/600/700"  alt="Photo 3"><div class="hover-overlay"><span>&#x26F6;</span></div></div>
-        <div class="gallery-item"><img src="https://picsum.photos/seed/g4/600/500"  alt="Photo 4"><div class="hover-overlay"><span>&#x26F6;</span></div></div>
-        <div class="gallery-item"><img src="https://picsum.photos/seed/g5/600/800"  alt="Photo 5"><div class="hover-overlay"><span>&#x26F6;</span></div></div>
-        <div class="gallery-item"><img src="https://picsum.photos/seed/g6/600/450"  alt="Photo 6"><div class="hover-overlay"><span>&#x26F6;</span></div></div>
-        <div class="gallery-item"><img src="https://picsum.photos/seed/g7/600/600"  alt="Photo 7"><div class="hover-overlay"><span>&#x26F6;</span></div></div>
-        <div class="gallery-item"><img src="https://picsum.photos/seed/g8/600/750"  alt="Photo 8"><div class="hover-overlay"><span>&#x26F6;</span></div></div>
-        <div class="gallery-item"><img src="https://picsum.photos/seed/g9/600/500"  alt="Photo 9"><div class="hover-overlay"><span>&#x26F6;</span></div></div>
-        <div class="gallery-item"><img src="https://picsum.photos/seed/g10/600/850" alt="Photo 10"><div class="hover-overlay"><span>&#x26F6;</span></div></div>
-        <div class="gallery-item"><img src="https://picsum.photos/seed/g11/600/400" alt="Photo 11"><div class="hover-overlay"><span>&#x26F6;</span></div></div>
-        <div class="gallery-item"><img src="https://picsum.photos/seed/g12/600/650" alt="Photo 12"><div class="hover-overlay"><span>&#x26F6;</span></div></div>
-        <div class="gallery-item"><img src="https://picsum.photos/seed/g13/600/500" alt="Photo 13"><div class="hover-overlay"><span>&#x26F6;</span></div></div>
-        <div class="gallery-item"><img src="https://picsum.photos/seed/g14/600/700" alt="Photo 14"><div class="hover-overlay"><span>&#x26F6;</span></div></div>
-        <div class="gallery-item"><img src="https://picsum.photos/seed/g15/600/450" alt="Photo 15"><div class="hover-overlay"><span>&#x26F6;</span></div></div>
-        <div class="gallery-item"><img src="https://picsum.photos/seed/g16/600/800" alt="Photo 16"><div class="hover-overlay"><span>&#x26F6;</span></div></div>
-        <div class="gallery-item"><img src="https://picsum.photos/seed/g17/600/550" alt="Photo 17"><div class="hover-overlay"><span>&#x26F6;</span></div></div>
-        <div class="gallery-item"><img src="https://picsum.photos/seed/g18/600/700" alt="Photo 18"><div class="hover-overlay"><span>&#x26F6;</span></div></div>
-        <div class="gallery-item"><img src="https://picsum.photos/seed/g19/600/500" alt="Photo 19"><div class="hover-overlay"><span>&#x26F6;</span></div></div>
-        <div class="gallery-item"><img src="https://picsum.photos/seed/g20/600/600" alt="Photo 20"><div class="hover-overlay"><span>&#x26F6;</span></div></div>
+        <p id="gallery-status" style="text-align:center; opacity:0.6; padding:2em;">Loading photos…</p>
       </div>
     </section>
   </main>
@@ -247,11 +226,16 @@
   </footer>
 
   <script>
-    const items   = Array.from(document.querySelectorAll('.gallery-item img'));
+    const IMAGE_DIR    = 'images/gato2025/';
+    const MANIFEST_URL = IMAGE_DIR + 'manifest.json';
+
+    const gallery = document.getElementById('gallery');
+    const status  = document.getElementById('gallery-status');
     const lb      = document.getElementById('lightbox');
     const lbImg   = document.getElementById('lb-img');
     const lbCount = document.getElementById('lb-counter');
-    let current   = 0;
+    let items   = [];
+    let current = 0;
 
     function open(index) {
       current = index;
@@ -274,9 +258,31 @@
       lbCount.textContent = `${current + 1} / ${items.length}`;
     }
 
-    document.querySelectorAll('.gallery-item').forEach((item, i) => {
-      item.addEventListener('click', () => open(i));
-    });
+    function buildGallery(filenames) {
+      gallery.innerHTML = '';
+      filenames.forEach((name, i) => {
+        const item = document.createElement('div');
+        item.className = 'gallery-item';
+        item.innerHTML = `<img src="${IMAGE_DIR}${encodeURIComponent(name)}" alt="GATO 2025 photo ${i + 1}" loading="lazy"><div class="hover-overlay"><span>&#x26F6;</span></div>`;
+        item.addEventListener('click', () => open(i));
+        gallery.appendChild(item);
+      });
+      items = Array.from(gallery.querySelectorAll('.gallery-item img'));
+      if (items.length === 0) {
+        gallery.innerHTML = '<p style="text-align:center; opacity:0.6; padding:2em;">No photos yet — check back soon!</p>';
+      }
+    }
+
+    fetch(MANIFEST_URL, { cache: 'no-cache' })
+      .then(r => {
+        if (!r.ok) throw new Error('Manifest ' + r.status);
+        return r.json();
+      })
+      .then(names => buildGallery(names))
+      .catch(err => {
+        status.textContent = 'Could not load photos. Please try again later.';
+        console.error('Failed to load manifest:', err);
+      });
 
     document.getElementById('lb-prev').addEventListener('click',  e => { e.stopPropagation(); navigate(-1); });
     document.getElementById('lb-next').addEventListener('click',  e => { e.stopPropagation(); navigate(+1); });
