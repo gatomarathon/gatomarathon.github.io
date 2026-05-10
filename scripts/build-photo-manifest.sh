@@ -8,9 +8,8 @@ cd "$(dirname "$0")/.."
 DIR="images/gato2025"
 OUT="$DIR/manifest.json"
 
-ls -1 "$DIR" \
+ls -1t "$DIR" \
   | grep -iE '\.(jpe?g|png|gif|webp|avif)$' \
-  | sort \
   | jq -R . \
   | jq -s . > "$OUT"
 
