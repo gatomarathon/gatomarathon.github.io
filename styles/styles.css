@@ -20,6 +20,12 @@
     display: block;
     margin-bottom: 1.5em; /* Add space below the banner */
   }
+
+  @media (max-width: 600px) {
+    .banner {
+      height: 26vh;
+    }
+  }
   
   /* Navigation Bar */
   nav {
