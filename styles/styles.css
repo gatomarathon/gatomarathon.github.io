@@ -424,6 +424,32 @@
     letter-spacing: 0.01em;
   }
   
+  /* Price block */
+  .price-block {
+    text-align: center;
+    margin: 1.5em 0;
+    line-height: 1.4;
+  }
+  .price-block span {
+    display: block;
+  }
+  .price-label {
+    font-size: 1em;
+    opacity: 0.9;
+  }
+  .price-amount {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: var(--accent);
+    margin: 0.2em 0;
+    letter-spacing: 0.02em;
+  }
+  .price-note {
+    font-size: 0.9em;
+    font-style: italic;
+    opacity: 0.8;
+  }
+
   /* Register button styles */
   .register-btn {
     display: inline-block;
